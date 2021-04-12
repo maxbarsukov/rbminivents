@@ -1,8 +1,9 @@
 # rbminivents
-This gem allows you to create and emit your events very easily and minimalistic.
+This gem allows you to easily use minimalistic events in Ruby.
 
 ## Description
-This gem was made under the influence of the tiny JS library [minivents](https://github.com/allouis/minivents) by [allouis](https://github.com/allouis) that I liked. It seemed to me that it would be nice to transfer this to Ruby.
+This gem was made under the influence of the tiny JS library [minivents](https://github.com/allouis/minivents) by [allouis](https://github.com/allouis) that I liked.
+It seemed to me that it would be quite nice to move something like this to Ruby.
 
 ## Getting started
 
@@ -25,7 +26,8 @@ bundle install
 ```
 
 ## API
-This project is similar to the original one in many ways, but some features are not implemented
+This project is similar to the original one in many ways, but some features are not implemented.
+
 So,
 
 `on`: Listen to event
