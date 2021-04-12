@@ -21,4 +21,8 @@ Gem::Specification.new do |spec|
   spec.test_files       = Dir['spec/**/*.rb']
   spec.extra_rdoc_files = ['README.md']
   spec.require_paths    = ['lib']
+
+  spec.add_development_dependency 'rubocop', '~> 1.0'
+  spec.add_development_dependency 'rubocop-performance', '~> 1.5'
+  spec.add_development_dependency 'rubocop-rspec', '~> 2.2.0'
 end
