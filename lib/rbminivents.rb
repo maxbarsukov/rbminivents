@@ -1,27 +1,33 @@
 module RbMinivents
   class Event
-    @events = {}
-    @empty = []
+
+    def initialize
+      @events = Hash.new
+    end
 
     # On: listen to events
     def on(type, &prc)
-      @events[type] = prc
+      @events[type.to_sym] = prc if block_given?
+
       self
     end
 
     # Off: stop listening to event / specific callback
     def off(type)
-      if @events.has_key?(type)
-        @events.delete(type)
+      sym = type.to_sym
+      if @events.has_key?(sym)
+        @events.delete(sym)
       end
+
       self
     end
 
     # Emit: send event, callbacks will be triggered
     def emit(type)
-      if @events.has_key?(type)
-        @events[type].call
-        @events.delete(type)
+      sym = type.to_sym
+      if @events.has_key?(sym)
+        @events[sym].call
+        @events.delete(sym)
       end
 
       self
