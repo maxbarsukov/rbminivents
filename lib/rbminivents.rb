@@ -9,11 +9,11 @@ module RbMinivents
     def on(type, &prc)
       sym = type.to_s.to_sym
 
-      @events[sym] = prc if block_ given?
+      @events[sym] = prc if block_given?
       self
     end
 
-    # Off: stop listening to event / specific callback
+    # Off: stop listening to event
     def off(type)
       sym = type.to_s.to_sym
 
