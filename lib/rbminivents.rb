@@ -28,7 +28,7 @@ module RbMinivents
     end
 
     # Emit: send event, callbacks will be triggered
-    def emit(type, *args)
+    def emit(type, args)
       s = sym(type)
 
       if @events.has_key?(s)
