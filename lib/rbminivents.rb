@@ -46,11 +46,3 @@ module RbMinivents
 
   end
 end
-
-class String
-
-  def remove_lines(i)
-    split("\n")[i..-1].join("\n")
-  end
-
-end
