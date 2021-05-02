@@ -26,13 +26,11 @@ bundle install
 ```
 
 ## API
-This project is similar to the original one in many ways, but some features are not implemented.
+This project is similar to the original one in many ways, but some features are not implemented. You can use standard ruby mixins for fully functionality. So,
 
-So,
+`on`: Listen to event. Returns handle
 
-`on`: Listen to event
-
-`off`: Stop listening to event
+`off`: Stop listening to event 
 
 `emit`: Emit event
 
@@ -66,9 +64,6 @@ sandbox.on(:event) do |name|
 end
 
 sandbox.emit(:event, 'Max')  #=> Hello, Max!
-# OR
-# when there are > 1 arguments, pass them through the array
-sandbox.emit(:event, ['Max'])  #=> Hello, Max!
 ```
 
 ```ruby
@@ -85,11 +80,42 @@ end
 
 # max, [1, 2, 3], 5 + 7 = 12
 sandbox.emit(:event,
-             [ 
-               {name: 'max'},
-               [1, 2, 3],
-               7,
-               false
-             ]
+             {name: 'max'},
+             [1, 2, 3],
+             7,
+             false
 )
+```
+
+### Using Off
+```ruby
+require 'rbminivents'
+
+sandbox = RbMinivents::Events.new
+
+handler1 = sandbox.on(:event) do
+  puts "First Hello!"
+end
+
+handler2 = sandbox.on(:event) do
+  puts "Second Hello!"
+end
+
+# remove just this callback
+sandbox.emit(:event)  # => First Hello!\nSecond Hello!
+
+sandbox.off(:event, handler1)
+sandbox.emit(:event)  # => Second Hello!
+
+sandbox.off(:event, handler2)
+sandbox.emit(:event)  # => nothing...
+
+# re-add listener to show can remove all at once
+sandbox.on(:event) do
+  puts "Hello!"
+end
+
+# remove all
+sandbox.off(:event)
+sandbox.emit(:event)  # => nothing again
 ```
