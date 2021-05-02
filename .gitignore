@@ -1,6 +1,7 @@
 .idea/*
 coverage/*
 Gemfile.lock
+.gem
 *~
 .bundle
 .rvmrc

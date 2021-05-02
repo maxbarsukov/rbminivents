@@ -7,33 +7,50 @@ module RbMinivents
 
     # On: listen to events
     def on(type, &prc)
-      sym = type.to_s.to_sym
-
-      @events[sym] = prc if block_given?
+      sym = sym(type)
+      (@events[sym] ||= []).push(prc) if block_given?
       self
     end
 
-    # Off: stop listening to event
-    def off(type)
-      sym = type.to_s.to_sym
+    # Off: stop listening to event / specific callback
+    def off(type, &prc)
+      s = sym(type)
 
-      if @events.has_key?(sym)
-        @events.delete(sym)
+      if @events.has_key?(s)
+        if block_given?
+          @events[s].delete(prc)
+        else
+          @events[s] = []
+        end
       end
 
       self
     end
 
     # Emit: send event, callbacks will be triggered
-    def emit(type, args = nil)
-      sym = type.to_s.to_sym
+    def emit(type, *args)
+      s = sym(type)
 
-      if @events.has_key?(sym)
-        @events[sym].call(*args)
-        @events.delete(sym)
+      if @events.has_key?(s)
+        @events[s].each { |f| f.call(*args) }
       end
 
       self
     end
+
+    private
+
+    def sym(o)
+      o.to_s.to_sym
+    end
+
   end
+end
+
+class String
+
+  def remove_lines(i)
+    split("\n")[i..-1].join("\n")
+  end
+
 end
