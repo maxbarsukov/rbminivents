@@ -21,7 +21,7 @@ module RbMinivents
     # Emit: send event, callbacks will be triggered
      def emit(name, *args)
       @handlers[name] ||= []
-      @handlers[name].each { |handler| handler.call(*args) }
+      @handlers[name].map { |handler| handler.call(*args) }
     end
   end
 end
