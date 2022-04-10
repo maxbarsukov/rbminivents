@@ -1,5 +1,8 @@
 # rbminivents
-This gem allows you to easily use minimalistic events in Ruby.
+
+> This gem allows you to easily use minimalistic events in Ruby.
+
+![rb.minvents logo](https://github.com/maxbarsukov/rbminivents/blob/master/docs/images/logo.png?raw=true)
 
 ## Description
 This gem was made under the influence of the tiny JS library [minivents](https://github.com/allouis/minivents) by [allouis](https://github.com/allouis) that I liked.
